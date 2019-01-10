@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <p><h1>Witaj w przechowalni plików.</h1></p>
+    <br>
+    <p>Aby móc pobierać dostępne pliki, <a href="{{ url_for('login') }}">zaloguj się</a>.</p>
+    <p>Aby móc zarządzać plikami, zaloguj się jako <u>administrator</u>.</p>
+    <p>Jeśli jeszcze nie masz konta -  <a href="{{ url_for('register') }}">zarejestruj się</a>.</p>
+    <p>Nie wiesz jak się zalogować? Kliknij <a href="{{ url_for('manual') }}">tutaj</a>.</p>
+    <p>Do implementacji kluczy oraz zaszyfrowania tekstu potrzebny jest program <a href="https://www.gnupg.org/download/index.html">GnuPG</a>.</p>
+{% endblock %}

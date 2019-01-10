@@ -1,0 +1,7 @@
+.navbar-default{
+  text-align:center;
+}
+.navbar-center{
+   display: inline-block;
+   float: none; 
+}

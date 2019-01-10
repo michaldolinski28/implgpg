@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+    <p><h1>Witaj, {{ current_user.username }}!</h1></p>
+    <p>Jesteś zalogowany jako: 
+        {% if admin.can() == False %}
+            <u>użytkownik</u>
+        {% else %} 
+            <u>administrator</u>
+        {% endif %}</p>
+    <p><b>Twój klucz publiczny to: </b><br>{{current_user.public_key}}<br></p>
+    <p><b>Twój klucz prywatny to: </b><br>{{current_user.private_key}}</p>
+    <form action="/downloadkeys" method="post">
+    <p><button name="downloadBtn" type="submit">Pobierz klucze</button></p>
+    </form>
+{% endblock %}

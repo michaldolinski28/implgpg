@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+  <div class="container">
+    <div class="col-12-xs">
+      <p><h1>Lista plików</h1></p>
+      
+    <p><b>Dodaj plik</b></p> 
+    <form class="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <p><button type="submit" class="btn btn-primary">Dodaj</button></p>
+    </form>
+    
+    <p>Dopuszczalne to: .txt, .pdf, .png, .jpg, .jpeg, .gif</p>
+    
+      <hr>
+      
+        <hr>
+        <table class="table table-striped">
+        <tr>
+          <th>Nazwa pliku</th>
+          <th>Data modyfikacji</th>
+          <th>Typ pliku</th>
+          <th></th>
+          <th></th>
+        </tr>
+        {% for f in files %}
+        <tr>
+          <td>{{ f.key }}</td>
+          <td>{{ f.last_modified | datetimeformat }}</td>
+          <td>{{ f.key | file_type }}</td>
+            <td>
+            <form class="download-form" action="{{ url_for('downloadfile') }}" method="POST">
+            <input type="hidden" name="key" value="{{ f.key }}">
+            <button type="submit" class="btn btn-danger btn-sm">Pobierz</button>
+            </form>
+            </td>
+            <td>
+            <form class="delete-form" action="{{ url_for('delete') }}" method="POST">
+            <input type="hidden" name="key" value="{{ f.key }}">
+            <button type="submit" class="btn btn-danger btn-sm">Usuń</button>
+            </form>
+            </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,10 @@
+flask
+gunicorn
+psycopg2
+flask_sqlalchemy
+flask_migrate
+flask_login
+pyopenssl
+flask_gnupg
+flask_bootstrap
+flask_wtf

@@ -1,0 +1,46 @@
+{% extends 'bootstrap/base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block title %}
+      {{ title }}
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='bootstrap.css')}}">
+{% endblock %}
+
+{% block navbar %}
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-center">
+                <ul class="nav navbar-nav">
+                    {% if current_user.is_anonymous %}
+                    <li><a href="{{ url_for('login') }}">Logowanie</a></li>
+                    <li><a href="{{ url_for('register') }}">Rejestracja</a></li>
+                    <li><a href="{{ url_for('manual') }}">Instrukcja logowania</a></li>
+                    {% else %}
+                    <li><a href="{{ url_for('index') }}">Profil: {{ current_user.username }}</a></li>
+                    <li><a href="{{ url_for('files') }}">Lista plików</a></li>
+                    <li><a href="{{ url_for('logout') }}">Wylogowanie</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+
+{% block content %}
+    <div class="container" align="center">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-info" role="alert">{{ message }}</div>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block app_content %}{% endblock %}
+        <div class="footer"><p>Utworzono przez <b>Michała Wiesława Dolińskiego</b> na potrzeby pracy inżynierskiej <i>"Identyfikacja użytkowników w dedykowanej sieci teleinformatycznej"</i>.</p></div>
+    </div>
+{% endblock %}

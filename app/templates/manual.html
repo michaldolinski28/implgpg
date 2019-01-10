@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <p><h1>Instrukcja logowania</h1></p>
+    <p>1. Zainstaluj <a href="https://www.gnupg.org/download/index.html">GnuPG</a> i skonfiguruj dołączony do pakietu menedżer kluczy Kleopatra.</p>
+    <p>2. <a href="{{ url_for('keys') }}">Zarejestruj się</a> i pobierz klucze potrzebne do zalogowania się.</p>
+    <p>3. Zaimportuj klucze wygenerowane na podstawie podanych danych przy rejestracji do programu Kleopatra.</p>
+    <p><img src="{{url_for('static', filename='import1.jpg')}}">     <img src="{{url_for('static', filename='import2.jpg')}}"></p>
+    <p>4. Po skopiowaniu tekstu jawnego kliknij prawym przyciskiem myszy na ikonę programu Kleopatra w zasobniku systemowym i z menu "Schowek" wybierz "Zaszyfruj...".</p>
+    <p><img src="{{url_for('static', filename='cipher1.jpg')}}"></p>
+    <p>5. W wyświetlonym oknie kliknij "Dodaj adresata" i z listy wybierz własny certyfikat.</p>
+    <p><img src="{{url_for('static', filename='cipher2.jpg')}}"></p>
+    <p>6. Po kliknięciu przycisku "Następny" Kleopatra automatycznie zaszyfruje tekst ze schowka, który należy wkleić we wskazane miejsce na ekranie <a href="{{ url_for('login') }}">logowania</a>.</p>
+    <p>7. Przy logowaniu zaimportuj swoje klucze, a następnie zaloguj się.</p>
+{% endblock %}
